@@ -77,5 +77,6 @@ if ($_POST['user'] == "Richard") {
 <p> Movie: <?php echo $varMovie; ?> </p>
 <p> Rating: <?php echo $varRating; ?> </p>
 <a href="obtain_ratings.php">Back</a>
+<a href="recommend.php">Recommend Movies</a>
 </body>
 </html>
