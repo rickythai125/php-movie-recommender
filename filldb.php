@@ -21,6 +21,10 @@ $sql = "CREATE TABLE MovieData (
     Avg_Rating float(2),
     Genre TEXT,
     Tagline TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    Popularity FLOAT,
+    Production_Company TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    Keywords TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    Poster TEXT,
     PRIMARY KEY (ID)
   );";
 
@@ -56,9 +60,13 @@ if (($handle = fopen("TMDB_movie_dataset_v11.csv", "r")) !== FALSE) {
         $colRating = $connection->real_escape_string($col[2]);
         $colGenre = $col[19];
         $colTagline = $connection->real_escape_string($col[18]);
+        $colPopularity = $col[16];
+        $colProductionCompany = $connection->real_escape_string($col[20]);
+        $colKeywords = $connection->real_escape_string($col[23]);
+        $colPoster = $col[17];
 
         // SQL Query to insert data into DataBase
-        $addData = "INSERT INTO MovieData(Movie_Title,Avg_Rating,Genre,Tagline) VALUES('".$colTitle."','".$colRating."','".$colGenre."','".$colTagline."')";
+        $addData = "INSERT INTO MovieData(Movie_Title,Avg_Rating,Genre,Tagline,Popularity,Production_Company,Keywords,Poster) VALUES('".$colTitle."','".$colRating."','".$colGenre."','".$colTagline."','".$colPopularity."','".$colProductionCompany."','".$colKeywords."','".$colPoster."')";
         //check if data is added
         if ($connection->query($addData) === TRUE) {
             echo "Data added correctly";
